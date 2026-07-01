@@ -1,0 +1,448 @@
+/* --- 1. Variables & Global Reset --- */
+:root {
+  --primary-blue: #4a90e2;
+  --success-green: #7ed321;
+  --accent-yellow: #f8e71c;
+  --text-dark: #2c3e50;
+  --bg-light: #f9f9f9;
+  --white: #ffffff;
+  --glass: rgba(255, 255, 255, 0.85);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+
+/* --- 3. Page Hero --- */
+.page-header {
+  background: linear-gradient(135deg, var(--primary-blue), var(--success-green));
+  padding: 4rem 2rem 4rem;
+  text-align: relative;
+  color: white;
+}
+
+
+/* --- 4. Content Containers & Cards --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem 0; /* ADDED 6rem TOP PADDING: This pushes the H2 up so it's not hidden */
+  position:centre;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--primary-blue);
+  font-weight: 700;
+  position: relative;
+  z-index: 1; /* Ensures text stays above any background elements */
+}
+
+/* --- MISSION, VISION & BROAD GOAL (The Sandwich Grid) --- */
+.mission-vision {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 2rem;
+  margin-top: 0; /* Removed negative margin here to prevent hiding the title */
+  margin-bottom: 4rem;
+}
+
+.mission-card, .vision-card, .Broad-goal {
+  background: var(--white, #ffffff);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-top: 5px solid var(--success-green);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.Broad-goal {
+  grid-column: span 2; /* Spans full width under the first two */
+}
+
+.mission-card:hover, .vision-card:hover, .Broad-goal:hover {
+  transform: translateY(-10px);
+}
+
+/* --- 1. CORE VALUES: Full-Width Background Section --- */
+.container2 {
+  width: 100%;
+  margin: 4rem 0;
+  padding: 6rem 2rem;
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.85)), 
+              url("../Main%20Project/images/Muuo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax effect */
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.03);
+}
+
+/* --- 2. CORE VALUES: The Centered Grid --- */
+.values-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  /* MOBILE FRIENDLY: auto-fit creates columns based on 260px min width */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+  gap: 2rem;
+}
+
+/* effect for Core Values */
+.value-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-top: 6px solid #7ed321;
+  transition: all 0.4s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-15px);
+  background: rgba(255, 255, 255, 1) !important;
+}
+
+/* --- MOBILE RESPONSIVE FIXES --- */
+@media (max-width: 1024px) {
+  .mission-vision {
+    grid-template-columns: 1fr;
+  }
+
+  .staff-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .container2 {
+    background-attachment: scroll;
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .mission-vision {
+    grid-template-columns: 1fr;
+  }
+
+  .Broad-goal {
+    grid-column: span 1;
+  }
+
+  .container2 {
+    background-attachment: scroll;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    padding-top: 2rem;
+  }
+
+  .mission-card {
+    padding: 1.5rem;
+  }
+
+  .value-card {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .history-card {
+    margin: 1rem 1rem;
+    padding: 1.2rem;
+  }
+  
+  .history-card p {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .split-middle {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .history-image {
+    height: 280px;
+    order: -1;
+    margin-bottom: 1rem;
+  }
+
+  .staff-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .staff-card {
+    padding: 1rem;
+  }
+  
+  .history-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .history-card {
+    margin: 1rem 0.75rem;
+    padding: 1rem;
+  }
+  
+  .history-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .history-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .era-tag {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    margin-bottom: 8px;
+  }
+  
+  .mission-card {
+    padding: 1.2rem;
+  }
+  
+  .mission-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .mission-card p {
+    font-size: 0.95rem;
+  }
+  
+  .value-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-card {
+    margin: 0.75rem 0.5rem;
+    padding: 0.75rem;
+  }
+  
+  .history-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .history-title {
+    font-size: 1.1rem;
+  }
+  
+  .history-image {
+    height: 220px;
+  }
+  
+  .mission-card {
+    padding: 1rem;
+  }
+  
+  .mission-card h3 {
+    font-size: 1rem;
+  }
+  
+  .mission-card p {
+    font-size: 0.9rem;
+  }
+  
+  .value-card {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+
+/* Our Background */
+.history-card {
+  background: #e6f8df;
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(40, 252, 68, 0.05);
+  border-top: 6px solid #7ed321;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 1500px;
+  margin: 1.2rem;
+  border: 1px solid #eee;
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+  border-top: 6px solid #7ed321;
+}
+
+/* Typography Spacing */
+.history-card p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  color: #080808;
+  font-size: 1.5rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* Middle Section Split */
+.split-middle {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Text gets slightly more room */
+  gap: 1rem;
+  align-items: center;
+  margin: 0;
+}
+
+/* 1. Target the DIV container inside the split layout */
+.history-image {
+  width: 100%;             /* Fills up its half of the split layout */
+  min-height: 200px;       /* Keeps your minimum height boundary */
+  border-radius: 15px;
+  overflow: hidden;        /* Cuts off anything that spills outside the radius */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  display: flex;           /* Uses flexbox to center the actual image inside it */
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9; /* Optional: Adds a soft background if the logo has transparency */
+}
+
+/* 2. Target the ACTUAL IMAGE tag (.history-img) to make it scale correctly */
+.history-img {
+  width: 100%;             /* Fits perfectly inside the .history-image wrapper */
+  height: 100%;            /* Fills the container height */
+  object-fit: contain;     /* CRUCIAL FOR LOGOS: Keeps the logo from stretching or getting cropped */
+  display: block;          /* Removes unexpected bottom white spacing */
+}
+
+/* Keep your existing .history-card and .history-image styles, then add these: */
+
+.history-title {
+  text-align: center;
+  color: #2e7d32;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+}
+
+.era-tag {
+  display: inline-block;
+  background: #7ed321;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.history-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(126, 211, 33, 0.75), rgba(0, 0, 0, 0));
+  margin: 2rem 0;
+}
+
+.final-location {
+  background: rgba(126, 211, 33, 0.1);
+  padding: 20px;
+  border-left: 5px solid #7ed321;
+  border-radius: 0 10px 10px 0;
+}
+
+/* Ensure images fit well in your grid */
+.history-image {
+  box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+}
+
+
+
+
+/* --- Staff Grid Setup --- */
+.staff-grid {
+  display: grid;
+grid-template-columns: repeat(3, minmax(280px, 1fr));
+
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.staff-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border-bottom: 5px solid var(--success-green); /* Using your theme green */
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.staff-card:hover {
+  transform: translateY(-10px);
+}
+
+/* --- The Photo Container --- */
+.staff-image {
+  width: 100%;
+  height: 300px; /* Fixed height for all staff photos */
+  overflow: hidden;
+  background-color: #f0f4f8;
+}
+
+.staff-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is vital to keep faces from stretching */
+  object-position: top center; /* Focuses on the face/head area */
+}
+
+/* --- Staff Text Details --- */
+.staff-info {
+  padding: 1.5rem;
+}
+
+.staff-info h4 {
+  color: var(--primary-blue);
+  font-size: 1.25rem;
+  margin-bottom: 0.3rem;
+}
+
+.staff-role {
+  color: var(--success-green);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.staff-bio {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+
+
+

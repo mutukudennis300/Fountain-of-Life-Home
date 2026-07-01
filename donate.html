@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Donate | Fountain of Life Children's Home</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/donate.css" /> <!--brand colors -->
+    <link rel="stylesheet" href="css/mutuku.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+</head>
+
+<body>
+    <!-- [FIXED HORIZONTAL HEADER] -->
+<header class="site-header">
+  <nav class="navbar-hub">
+    <div class="brand-logo">
+      <img src="images/Boys Logo.jpg" alt="Fountain of Life Logo" class="logo-img">
+      Fountain of Life <br> Children's Home
+    </div>
+    
+       <!-- Mobile Menu Toggle -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+<ul class="horizontal-menu">
+  <li><a href="index.html" >Home</a></li>
+  <li><a href="About.html">About Us</a></li>
+  <li><a href="Programs and Services.html">Programs</a></li>
+  <li><a href="Get Involved.html">Get Involved</a></li>
+  <li><a href="Contact.html">Contact Us</a></li>
+  
+  <!-- Dropdown Menu -->
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">More</a>
+    <div class="dropdown-content">
+      <a href="Success Stories.html">Stories</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="faqs.html">FAQs'</a>
+      <a href="bishop.html">Our Leadership</a>
+      <a href="donate.html">Donate</a>
+      <a href="Privacy Policy.html">Privacy Policy</a>
+    </div>
+  </li>
+</ul>
+  </nav>
+
+
+</header>
+   
+<!-- WHATSAPP FLOAT -->
+    <a
+      href="https://wa.me/254714042012?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more."
+      class="whatsapp-float"
+      target="_blank"
+      aria-label="Chat with us on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+      <span>Chat with us</span>
+    </a>
+
+
+
+
+<section class="give-parallax-hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('images/Muuo.jpg');">
+    <div class="hero-overlay">
+        <div class="container text-center">
+            <!-- 1. BIGGEST -->
+            <span class="badge-pill">Fountain of Life Children's Home</span>
+            
+            <!-- 2. MEDIUM -->
+            <h2 class="hero-title-main">Small Actions,</h2>
+            
+            <!-- 3. SMALLEST -->
+            <span class="text-accent">Big Impact.</span>
+            
+            <p class="lead text-white-50 mt-4 mb-5"><strong>Support the Blessed Boys through your generosity and love.</strong></p>
+            
+            <!-- Amount Box -->
+            <div class="floating-donate-box">
+                <label for="customAmount" class="text-dark fw-bold mb-3">Enter Amount to Donate (Ksh):</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-success border-0 text-white">Ksh</span>
+                    <input type="number" id="customAmount" class="form-control form-control-lg" placeholder="Amount">
+                    <button class="btn btn-dark px-4" type="button">Give</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ADDED ID="GIVE-METHODS" FOR SMOOTH SCROLLING -->
+<section id="give-methods" class="ways-to-give py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">WAYS TO CONTRIBUTE</h2>
+            <div class="title-line"></div>
+        </div>
+        <div class="row g-4 justify-content-center">
+            
+            <!-- 1. M-PESA PAYBILL -->
+            <div class="col-md-6 col-lg-3">
+                <div class="method-card dark-method-card">
+                    <i class="bi bi-phone-vibrate text-accent"></i>
+                    <h3>M-Pesa Paybill</h3>
+                    <p>Business No: <strong id="paybill">650 384</strong><br>Account: <strong>Purpose</strong></p>
+                    <button class="btn btn-sm btn-outline-light mt-2" onclick="copyText('247247')">Copy Paybill</button>
+                </div>
+            </div>
+
+            <!-- 2. SEND MONEY (Direct Mobile) -->
+            <div class="col-md-6 col-lg-3">
+                <div class="method-card dark-method-card">
+                    <i class="bi bi-send-fill text-accent"></i>
+                    <h3>Send Money</h3>
+                    <p>Direct to Mobile:<br><strong>+254 722 308 846</strong><br>Name: Florence Mbai</p>
+                    <a href="tel:+254714042012" class="btn btn-sm btn-outline-light mt-2">Call to Verify</a>
+                </div>
+            </div>
+
+            <!-- 3. BANK TRANSFER -->
+            <div class="col-md-6 col-lg-3">
+                <div class="method-card dark-method-card">
+                    <i class="bi bi-bank text-accent"></i>
+                    <h3>Bank Transfer</h3>
+                    <p><strong>Equity Bank</strong><br>Acc No: 1234567890<br>Swift: EQTYKENX</p>
+                </div>
+            </div>
+
+            <!-- 4. GLOBAL GIVING (PayPal/WorldRemit) -->
+            <div class="col-md-6 col-lg-3">
+                <div class="method-card dark-method-card">
+                    <i class="bi bi-globe text-accent"></i>
+                    <h3>Global Giving</h3>
+                    <p>PayPal / Remitly / Card<br><small>deliveranceministies.fountain@gmail.com</small></p>
+                    <a href="mailto:deliveranceministies.fountain@gmail.com" class="btn btn-sm btn-outline-success mt-2">Email for Link</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- RESTORED: YOUR ORIGINAL CATEGORIES GRID -->
+<section class="card-section py-5">
+    <div class="container">
+        <div class="row g-3"> 
+            <!-- 1. Feeding Program -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="action-card">
+                    <div class="card-icon"><i class="bi bi-heart-fill"></i></div>
+                    <h3>Feeding Program</h3>
+                    <p>Ensure no boy goes to bed hungry. Provides three balanced meals daily.</p>
+                    <a href="#" class="card-btn">Give Ksh 1,000</a>
+                </div>
+            </div>
+
+            <!-- 2. Sponsor Fees -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="action-card active-card">
+                    <div class="card-icon"><i class="bi bi-mortarboard-fill"></i></div>
+                    <h3>Sponsor Fees</h3>
+                    <p>Covers tuition, uniforms, and stationery for one term for a Blessed Boy.</p>
+                    <a href="#" class="card-btn">Sponsor Now</a>
+                </div>
+            </div>
+
+            <!-- 3. Medical Care -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="action-card">
+                    <div class="card-icon"><i class="bi bi-hospital"></i></div>
+                    <h3>Medical Care</h3>
+                    <p>Helps maintain our monthly check-ups and emergency medical kitty.</p>
+                    <a href="#" class="card-btn">Give Ksh 3,000</a>
+                </div>
+            </div>
+
+            <!-- 4. Donate Books -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="action-card">
+                    <div class="card-icon"><i class="bi bi-book-half"></i></div>
+                    <h3>Donate Books</h3>
+                    <p>Provide storybooks and textbooks for our home library and school use.</p>
+                    <a href="Contact.html" class="card-btn">Arrange Drop-off</a>
+                </div>
+            </div>
+
+            <!-- 5. Donate Clothes -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="action-card">
+                    <div class="card-icon"><i class="bi bi-tag-fill"></i></div>
+                    <h3>Donate Clothes</h3>
+                    <p>Clean, gently used clothes and shoes are always needed for the boys.</p>
+                    <a href="Contact.html" class="card-btn">Donate Items</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="site-footer mt-auto">
+    <div class="container py-5">
+        <div class="footer-grid">
+            <!-- About -->
+            <div class="footer-section">
+                <h5 class="footer-title">Fountain of Life</h5>
+                <p class="footer-text">A children’s home committed to care, protection, and hope.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h5 class="footer-title">Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Programs and Services.html">Programs</a></li>
+                    <li><a href="stories.html">Success Stories</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="bishop.html">Our Leadership</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="footer-section">
+                <h5 class="footer-title">Support</h5>
+                <ul class="footer-links">
+                    <li><a href="get-involved.html">Get Involved</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-section last-section">
+                <h5 class="footer-title">Contacts</h5>
+                <p class="footer-text">📞 +254 722 308 846 / +254 726 441 474</p>
+                <p class="footer-text">📧 fountainoflifeboys300@gmail.com</p>
+                <p class="footer-text">📍 Nairobi, Kenya</p>
+            </div>
+        </div>
+
+        <!-- Social Icons (Separated and Centered) -->
+        <div class="footer-social-wrapper">
+            <div class="footer-social">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom text-center py-3">
+        © 2026 Fountain of Life Children’s Home. All Rights Reserved. <br>
+        © 2026 Blessed Boys. All Rights Reserved.
+    </div>
+</footer>
+
+
+ <script src="js/bootstrap.min.js"></script>
+  <script src="js/mutuku.js"></script>
+
+</body>
+</html>

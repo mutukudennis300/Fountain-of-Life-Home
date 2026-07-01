@@ -1,0 +1,595 @@
+/* --- 1. Variables & Global Reset --- */
+:root {
+  --primary-blue: #4a90e2;
+  --success-green: #7ed321;
+  --accent-yellow: #f8e71c;
+  --text-dark: #2c3e50;
+  --bg-light: #f9f9f9;
+  --white: #ffffff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+}
+
+/* --- 2. Brand Header & Nav --- */
+header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--primary-blue);
+}
+
+/* --- 3. Page Hero --- */
+.page-header {
+  background: linear-gradient(135deg, var(--primary-blue), var(--success-green));
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+  border-radius: 0 0 30px 30px;
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.intro-section {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+}
+
+/* intro section */
+.intro-section p {
+    font-size: 1.25rem; 
+    line-height: 1.8;  
+    color: #000e04;
+    font-style: italic; 
+    position: relative;
+}
+
+.intro-section p::before {
+    content: "“";
+    font-size: 5rem;
+    color: #04ff04;
+    opacity: 0.2;
+    position: absolute;
+    top: -40px;
+    left: -30px;
+}
+
+
+/* --- impact stats --- */
+.impact-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    padding: 40px 0;
+}
+
+.stat-card {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    padding: 40px 20px;
+    border-radius: 20px;
+    border-top: 4px solid #e67e22; /* Accents the top with your brand color */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(230, 126, 34, 0.15);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #e67e22;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Subtle background decoration */
+.stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: rgba(230, 126, 34, 0.05);
+    border-radius: 50%;
+}
+
+
+/* --- 5. Testimonials & Stories --- */
+.testimonials-section {
+    padding: 60px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: #7ed321 solid 4px; /* Adds a green accent line at the top of the testimonials section */
+    padding-top: 40px;
+}
+
+.testimonial-card {
+    background: #fdfdfd;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+.user-img img {
+    width: 300px; 
+    height: 300px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #e67e22;
+}
+
+
+.user-quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.user-info strong {
+    display: block;
+    color: #333;
+    font-size: 1rem;
+}
+
+.user-info span {
+    font-size: 0.85rem;
+    color: #e67e22;
+}
+
+
+/* Case Study Layout (Image + Text) */
+.case-study-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 2rem;
+  color: #000e04;
+  font-size: 20px;
+}
+
+/* --- The Photo Container --- */
+.case-studies {
+    max-width: 1100px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Space between different stories */
+}
+
+.case-study-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+}
+
+/* Alternates the image and text for every second story */
+.case-study:nth-child(even) .case-study-content {
+    flex-direction: row-reverse;
+}
+
+.case-study-text {
+    flex: 1;
+}
+
+.case-study-text h4 {
+    color: #e67e22;
+    margin: 15px 0 5px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.case-study-image {
+    flex: 1;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.case-study-img {
+    width: 100%;
+    max-width: 450px;
+    height: 650px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
+    box-shadow: 15px 15px 0px #fdf2e9; /* Soft brand-colored offset shadow */
+    margin-top: 10px;
+}
+
+.case-study-header {
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+}
+
+/* --- 8. Responsive Design --- */
+@media (max-width: 1024px) {
+  .case-study-img {
+    max-width: 350px;
+    height: 500px;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 3rem 2rem;
+    border-radius: 0 0 30px 30px;
+  }
+  
+  .page-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-header p {
+    font-size: 1rem;
+  }
+  
+  .intro-section {
+    padding: 0 15px;
+    margin: 0 auto 40px;
+  }
+  
+  .intro-section p {
+    font-size: 1.1rem;
+  }
+  
+  .case-study-content, .case-study:nth-child(even) .case-study-content {
+    flex-direction: column;
+    gap: 20px;
+    padding: 1.5rem;
+  }
+  
+  .case-study-img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+  }
+  
+  .case-study-text {
+    width: 100%;
+  }
+  
+  .achievement-list ul {
+    grid-template-columns: 1fr;
+  }
+  
+  .achievement-list li {
+    padding: 15px;
+    font-size: 0.95rem;
+  }
+  
+  .impact-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 1rem;
+  }
+  
+  .highlight-section, .share-story {
+    padding: 40px 25px;
+    margin: 30px 20px;
+  }
+  
+  .highlight-section h3,
+  .share-story h3 {
+    font-size: 1.5rem;
+  }
+  
+  .cta-button {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-header {
+    padding: 2rem 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .page-header p {
+    font-size: 0.9rem;
+  }
+  
+  .intro-section {
+    margin: 0 auto 30px;
+  }
+  
+  .intro-section p {
+    font-size: 1rem;
+  }
+  
+  .intro-section p::before {
+    font-size: 3rem;
+  }
+  
+  .case-studies {
+    margin: 30px auto;
+    gap: 40px;
+  }
+  
+  .case-study-header h3 {
+    font-size: 1.3rem;
+  }
+  
+  .case-study-subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .case-study-text h4 {
+    font-size: 1rem;
+  }
+  
+  .case-study-text p {
+    font-size: 0.95rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .impact-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .stat-card {
+    padding: 20px;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .achievement-list li {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+  
+  .achievement-list li::before {
+    font-size: 1rem;
+    margin-right: 10px;
+  }
+  
+  .highlight-section, .share-story {
+    padding: 30px 15px;
+    margin: 20px 15px;
+  }
+  
+  .highlight-section h3,
+  .share-story h3 {
+    font-size: 1.3rem;
+  }
+  
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .page-header p {
+    font-size: 0.85rem;
+  }
+  
+  .case-study-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .case-study-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  .stat-card {
+    padding: 15px;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .highlight-section, .share-story {
+    padding: 20px 12px;
+    margin: 15px 10px;
+  }
+  
+  .cta-button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+}
+
+
+
+/* --- 6. Achievements List --- */
+.achievement-list ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+.achievement-list li {
+    background: #fff;
+    padding: 20px;
+    border-left: 5px solid #e67e22; /* Brand accent line */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: #333;
+    transition: transform 0.2s ease;
+}
+
+.achievement-list li:hover {
+    transform: scale(1.03);
+    background: #fffaf5; /* Very light brand tint */
+}
+
+/* Custom Checkmark Icon */
+.achievement-list li::before {
+    content: '✓';
+    margin-right: 15px;
+    color: #e67e22;
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+
+.highlight-section, .share-story {
+    padding: 50px 30px;
+    border-radius: 20px;
+    margin: 40px auto;
+    max-width: 1000px;
+    text-align: center;
+}
+
+/* Primary Call to Action - Bold & Energetic */
+.highlight-section {
+    background: #e67e22;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(230, 126, 34, 0.3);
+}
+
+.highlight-section h3 { font-size: 2rem; color: #fff; }
+.highlight-section .cta-button {
+    background: #fff;
+    color: #e67e22;
+    border: 2px solid #fff;
+}
+
+/* Secondary Call to Action - Soft & Inviting */
+.share-story {
+    background: #fdf2e9;
+    border: 2px dashed #e67e22;
+}
+
+.share-story h3 { color: #d35400; }
+.share-story .cta-button {
+    background: #e67e22;
+    color: #fff;
+}
+
+/* Button Styling */
+.cta-button {
+    display: inline-block;
+    padding: 15px 35px;
+    margin-top: 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+
+

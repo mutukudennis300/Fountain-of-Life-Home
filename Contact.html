@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/mutuku.css" />
+    <link rel="stylesheet" href="css/contactus.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+
+    <title>Contact Us | Fountain of Life Children's Home</title>
+   
+  </head>
+  <body>
+    <!-- [FIXED HORIZONTAL HEADER] -->
+<header class="site-header">
+  <nav class="navbar-hub">
+    <div class="brand-logo">
+      <img src="images/Boys Logo.jpg" alt="Fountain of Life Logo" class="logo-img">
+      Fountain of Life <br> Children's Home
+    </div>
+    
+       <!-- Mobile Menu Toggle -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+<ul class="horizontal-menu">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="About.html">About Us</a></li>
+  <li><a href="Programs and Services.html">Programs</a></li>
+  <li><a href="Get Involved.html">Get Involved</a></li>
+  <li><a href="Contact.html" class="active">Contact Us</a></li>
+  
+  <!-- Dropdown Menu -->
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">More</a>
+    <div class="dropdown-content">
+      <a href="Success Stories.html">Stories</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="faqs.html">FAQs'</a>
+      <a href="bishop.html">Our Leadership</a>
+      <a href="donate.html">Donate</a>
+      <a href="Privacy Policy.html">Privacy Policy</a>
+    </div>
+  </li>
+</ul>
+  </nav>
+</header>
+
+<!-- WHATSAPP FLOAT -->
+    <a
+      href="https://wa.me/254714042012?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more."
+      class="whatsapp-float"
+      target="_blank"
+      aria-label="Chat with us on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+      <span>Chat with us</span>
+    </a>
+
+
+<div class="container">
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('status') === 'success') {
+        alert("Success! Your message has been sent.");
+    } else if (urlParams.get('status') === 'error' || urlParams.get('status') === 'fail') {
+        alert("Oops! There was an error sending your message. Please try again.");
+    }
+</script>
+
+<section class="page-header">
+    <h1>Contact Us</h1>
+</section>
+
+      <div class="contact-section">
+        <div class="contact-form">
+          <h2>Send us a Message</h2>
+<form action="https://formsubmit.co" method="POST">
+    <!-- Hidden configuration inputs for FormSubmit -->
+    <input type="hidden" name="_next" value="https://github.io">
+    <input type="hidden" name="_subject" value="New Website Inquiry">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none"> <!-- Anti-spam honeypot -->
+
+    <!-- Form Input Fields -->
+    <input type="text" name="name" required placeholder="Full Name">
+    <input type="email" name="email" required placeholder="Email Address">
+    <input type="text" name="phone" placeholder="Phone Number">
+    <input type="text" name="subject" required placeholder="Subject">
+    <textarea name="message" required placeholder="Your Message"></textarea>
+
+    <button type="submit">Send Message</button>
+</form>
+
+
+        </div>
+
+        <div class="contact-info">
+          <h2>Contact Information</h2>
+
+          <div class="info-card">
+            <h3>📞 Phone</h3>
+            <p>+254 722 308 846</p>
+            <p>+254 726 441 475</p>
+          </div>
+
+          <div class="info-card">
+            <h3>📧 Email</h3>
+            <p>fountainboys300@gmail.com</p>
+            <p>fountainoflife300@gmail.com</p>
+          </div>
+
+          <div class="info-card">
+            <h3>📍 Location</h3>
+            <p>
+              Saika, Mowlem<br />
+              Mysa Green Road<br />
+              Nairobi, Kenya
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>🕒 Hours</h3>
+            <p>
+              Monday - Friday: 9:00 AM - 5:00 PM<br />
+              Saturday: 10:00 AM - 3:00 PM<br />
+              Sunday: 10:00 AM - 3:00 PM
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="map-container row">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d249.30352894938645!2d36.91027006534712!3d-1.2581287449205112!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f15424e37849f%3A0xdfcfb9b855c6b19a!2sFountain%20of%20Life%20Deliverance%20Ministries!5e0!3m2!1sen!2sus!4v1769706733300!5m2!1sen!2sus"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        
+        ></iframe>
+      </div>
+    </div>
+
+<footer class="site-footer mt-auto">
+    <div class="container py-5">
+        <div class="footer-grid">
+            <!-- About -->
+            <div class="footer-section">
+                <h5 class="footer-title">Fountain of Life</h5>
+                <p class="footer-text">A children’s home committed to care, protection, and hope.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h5 class="footer-title">Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Programs and Services.html">Programs</a></li>
+                    <li><a href="stories.html">Success Stories</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="bishop.html">Our Leadership</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="footer-section">
+                <h5 class="footer-title">Support</h5>
+                <ul class="footer-links">
+                    <li><a href="get-involved.html">Get Involved</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-section last-section">
+                <h5 class="footer-title">Contacts</h5>
+                <p class="footer-text">📞 +254 722 308 846 / +254 726 441 475</p>
+                <p class="footer-text">📧 fountainoflifeboys300@gmail.com</p>
+                <p class="footer-text">📍 Nairobi, Kenya</p>
+            </div>
+        </div>
+
+        <!-- Social Icons (Separated and Centered) -->
+        <div class="footer-social-wrapper">
+            <div class="footer-social">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom text-center py-3">
+        © 2026 Fountain of Life Children’s Home. All Rights Reserved. <br>
+        © 2026 Blessed Boys. All Rights Reserved.
+    </div>
+</footer>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mutuku.js"></script>
+  </body>
+</html>

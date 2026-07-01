@@ -1,0 +1,284 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #070707;
+  background-color: #f5cfcf;
+}
+
+.container {
+  max-width: 80%;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  flex-grow: 1;
+}
+
+h1 {
+  color: #050505;
+  margin: 0px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.contact-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0rem;
+  font-weight: bold;
+  color: #070707;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="phone"],
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="phone"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #cf8181;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+button {
+  background: linear-gradient(135deg, #f12222 0%, #f1d12f 50%, #1608df 100%);
+  color: rgb(2, 46, 4);
+  padding: 1rem;
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(250, 4, 4, 0.3);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-card {
+  background: #c8c7f5;
+  padding: 1.5rem; /* Increased for breathing room */
+  border-radius: 8px;
+  border-left: 5px solid #04fc10;
+}
+
+.info-card h3 {
+  color: #ff6b6b;
+  margin-bottom: 0.1rem;
+}
+
+.info-card p {
+  color: #080808;
+}
+
+.map-container {
+  width: 100%;
+  margin-top: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+  width: 100%;
+  /* This keeps the map at a nice height relative to its width */
+  aspect-ratio: 16 / 9; 
+  display: block;
+}
+
+/* On very small screens, make the map a bit taller so it's usable */
+@media (max-width: 600px) {
+  .map-container iframe {
+    aspect-ratio: 4 / 3;
+    height: 300px;
+  }
+}
+
+
+body {
+  background: linear-gradient(180deg, #ffffff 0%, #fdf2f2 100%);
+  background-attachment: fixed; 
+}
+
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 1024px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+  }
+  
+  .form-container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .container {
+    max-width: 95%;
+  }
+  
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  
+  .submit-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+  
+  .info-card {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .map-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 1rem 0.75rem;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
+  .form-container h2 {
+    font-size: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .submit-btn {
+    padding: 10px 25px;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .info-card {
+    padding: 1.2rem;
+  }
+  
+  .info-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .map-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0.5rem;
+  }
+  
+  .container {
+    padding: 0 8px;
+  }
+  
+  .form-container h2 {
+    font-size: 1.3rem;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .submit-btn {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .info-card {
+    padding: 1rem;
+  }
+  
+  .info-card h3 {
+    font-size: 1rem;
+  }
+  
+  .info-card p {
+    font-size: 0.9rem;
+  }
+  
+  .map-container {
+    height: 200px;
+  }
+}
