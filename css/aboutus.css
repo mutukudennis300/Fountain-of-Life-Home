@@ -379,21 +379,6 @@ h2 {
 
 
 
-/* --- Staff Grid Setup --- */
-.staff-grid {
-  display: grid;
-grid-template-columns: repeat(3, minmax(280px, 1fr));
-
-  gap: 2.5rem;
-  margin-top: 2rem;
-}
-
-.staff-card {
-  background: white;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  border-bottom: 5px solid var(--success-green); /* Using your theme green */
   transition: transform 0.3s ease;
   text-align: center;
 }
@@ -442,6 +427,11 @@ grid-template-columns: repeat(3, minmax(280px, 1fr));
   color: #555;
   line-height: 1.5;
 }
+
+
+
+
+
 
 
 
