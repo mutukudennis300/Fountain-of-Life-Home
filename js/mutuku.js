@@ -15,36 +15,114 @@ const __agentLog = (hypothesisId, message, data) => {
 };
 // #endregion
 
-/* --- DROPDOWN TOGGLE (Mobile & Desktop) --- */
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.dropbtn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const dropdownContent = btn.nextElementSibling;
-      
-      // Close other dropdowns
-      document.querySelectorAll('.dropdown-content.show').forEach(content => {
-        if (content !== dropdownContent) {
-          content.classList.remove('show');
-        }
-      });
-      
-      // Toggle current dropdown
-      if (dropdownContent && dropdownContent.classList.contains('dropdown-content')) {
-        dropdownContent.classList.toggle('show');
-      }
-    });
-  });
+const siteWhatsAppLink = 'https://wa.me/254714042012?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more.';
+const siteEmail = 'fountainoflifeboys300@gmail.com';
 
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.dropdown')) {
-      document.querySelectorAll('.dropdown-content.show').forEach(content => {
-        content.classList.remove('show');
-      });
+function copyText(text) {
+  const value = String(text || '').trim();
+  if (!value) return;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(value).catch(() => {});
+  }
+
+  window.alert(`Copied: ${value}`);
+}
+
+function openDonationLink(amount = '') {
+  const safeAmount = String(amount || '').trim();
+  const message = safeAmount ? `Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20donate%20Ksh%20${encodeURIComponent(safeAmount)}.` : 'Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20support%20your%20work.';
+  window.open(`${siteWhatsAppLink.replace('Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more.', message)}`, '_blank', 'noopener,noreferrer');
+}
+
+function buildMailtoLink(subject, body) {
+  return `mailto:${siteEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+/* --- DROPDOWN TOGGLE (Mobile & Desktop) --- */
+function closeAllDropdowns(exceptContent = null) {
+  document.querySelectorAll('.dropdown-content.show').forEach(content => {
+    if (content !== exceptContent) {
+      content.classList.remove('show');
     }
   });
+}
+
+function toggleDropdown(button) {
+  const dropdown = button?.closest('.dropdown');
+  const dropdownContent = dropdown?.querySelector('.dropdown-content');
+
+  if (!dropdown || !dropdownContent) return;
+
+  const shouldOpen = !dropdownContent.classList.contains('show');
+  closeAllDropdowns(shouldOpen ? dropdownContent : null);
+  dropdownContent.classList.toggle('show', shouldOpen);
+  button.setAttribute('aria-expanded', String(shouldOpen));
+}
+
+document.addEventListener('click', (e) => {
+  const button = e.target.closest('.dropbtn');
+
+  if (button) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    toggleDropdown(button);
+    return;
+  }
+
+  if (!e.target.closest('.dropdown')) {
+    closeAllDropdowns();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const donateButton = document.querySelector('[data-donate-button]');
+  const amountInput = document.getElementById('customAmount');
+
+  if (donateButton && amountInput) {
+    donateButton.addEventListener('click', () => {
+      const amount = amountInput.value.trim();
+      if (amount) {
+        openDonationLink(amount);
+      } else {
+        window.open(siteWhatsAppLink, '_blank', 'noopener,noreferrer');
+      }
+    });
+  }
+
+  const reviewForm = document.getElementById('review-form');
+  if (reviewForm) {
+    reviewForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = reviewForm.querySelector('input[name="name"]').value.trim();
+      const review = reviewForm.querySelector('textarea[name="review"]').value.trim();
+      const summary = `Name: ${name || 'Anonymous'}\n\nReview:\n${review || 'No review provided.'}`;
+      const mailtoLink = buildMailtoLink('New website review', summary);
+      window.location.href = mailtoLink;
+      reviewForm.reset();
+      const message = reviewForm.querySelector('.form-feedback');
+      if (message) {
+        message.textContent = 'Thank you for your feedback. Your message is ready to be sent.';
+      }
+    });
+  }
+
+  const contactForm = document.querySelector('form[action*="formsubmit.co"]');
+  if (contactForm) {
+    contactForm.addEventListener('submit', () => {
+      const url = new URL(contactForm.action);
+      url.searchParams.set('subject', 'New Website Inquiry');
+      contactForm.action = url.toString();
+    });
+  }
+
+  const volunteerForm = document.querySelector('form[action*="formspree.io"]');
+  if (volunteerForm) {
+    volunteerForm.addEventListener('submit', () => {
+      volunteerForm.setAttribute('target', '_self');
+    });
+  }
 });
 
 /* FAQ ACCORDION */
@@ -57,22 +135,31 @@ document.querySelectorAll('.faq-question').forEach(button => {
 
 
 /* BACK TO TOP BUTTON */
-const backToTopBtn = document.getElementById("backToTop");
+function initBackToTop() {
+  let backToTopBtn = document.getElementById('backToTop');
 
-// Only run the logic if the button actually exists on the page
-if (backToTopBtn) {
-  window.onscroll = function () {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-      backToTopBtn.style.display = "block";
-    } else {
-      backToTopBtn.style.display = "none";
-    }
+  if (!backToTopBtn) {
+    backToTopBtn = document.createElement('button');
+    backToTopBtn.id = 'backToTop';
+    backToTopBtn.type = 'button';
+    backToTopBtn.setAttribute('aria-label', 'Back to top');
+    backToTopBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
+    document.body.appendChild(backToTopBtn);
+  }
+
+  const toggleVisibility = () => {
+    const shouldShow = window.scrollY > 220;
+    backToTopBtn.classList.toggle('show', shouldShow);
   };
 
-  backToTopBtn.addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  toggleVisibility();
+  window.addEventListener('scroll', toggleVisibility, { passive: true });
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+initBackToTop();
 
 /* index PAGE: FILTER & CARDS */
 const filterItems = document.querySelectorAll('.filter-item');

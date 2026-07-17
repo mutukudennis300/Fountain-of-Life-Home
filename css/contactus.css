@@ -5,34 +5,44 @@
 }
 
 body {
-  font-family: "Arial", sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
-  color: #070707;
-  background-color: #f5cfcf;
+  color: #0f172a;
+  background: linear-gradient(180deg, #ffffff 0%, #fdf2f2 100%);
+  background-attachment: fixed;
 }
 
 .container {
-  max-width: 80%;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 0 2rem;
   flex-grow: 1;
 }
 
 h1 {
-  color: #050505;
-  margin: 0px;
-  font-weight: bolder;
+  color: #0f172a;
+  margin: 0;
+  font-weight: 800;
   text-align: center;
+}
+
+.page-header {
+  margin: 1.5rem 0 2rem;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
 }
 
 .contact-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
   background: white;
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
 }
 
 .contact-form {
@@ -40,81 +50,90 @@ h1 {
   flex-direction: column;
 }
 
-.form-group {
-  margin-bottom: 1rem;
+.contact-form h2,
+.contact-info h2 {
+  margin-bottom: 0.5rem;
+  color: #1d4ed8;
 }
 
-label {
-  display: block;
-  margin-bottom: 0rem;
-  font-weight: bold;
-  color: #070707;
+.form-intro {
+  margin-bottom: 1.2rem;
+  color: #475569;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 input[type="text"],
 input[type="email"],
-input[type="phone"],
 textarea {
   width: 100%;
-  padding: 0.8rem;
-  border: 2px solid #ddd;
-  border-radius: 4px;
+  padding: 0.9rem 1rem;
+  border: 1px solid #dbe1ea;
+  border-radius: 12px;
   font-size: 1rem;
-  font-family: Arial, sans-serif;
-  transition: border-color 0.3s;
+  font-family: inherit;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: #f8fafc;
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="phone"]:focus,
 textarea:focus {
   outline: none;
-  border-color: #cf8181;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 textarea {
   resize: vertical;
-  min-height: 150px;
+  min-height: 140px;
+  margin-bottom: 1rem;
 }
 
 button {
-  background: linear-gradient(135deg, #f12222 0%, #f1d12f 50%, #1608df 100%);
-  color: rgb(2, 46, 4);
-  padding: 1rem;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  color: #ffffff;
+  padding: 0.95rem 1.2rem;
   border: none;
-  border-radius: 3px;
+  border-radius: 999px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(250, 4, 4, 0.3);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
 }
 
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .info-card {
-  background: #c8c7f5;
-  padding: 1.5rem; /* Increased for breathing room */
-  border-radius: 8px;
-  border-left: 5px solid #04fc10;
+  background: linear-gradient(135deg, #eff6ff, #f8fafc);
+  padding: 1.2rem;
+  border-radius: 16px;
+  border-left: 5px solid #22c55e;
 }
 
 .info-card h3 {
-  color: #ff6b6b;
-  margin-bottom: 0.1rem;
+  color: #1d4ed8;
+  margin-bottom: 0.25rem;
 }
 
 .info-card p {
-  color: #080808;
+  color: #334155;
+  margin-bottom: 0.2rem;
 }
 
 .map-container {
@@ -141,12 +160,6 @@ button:hover {
 }
 
 
-body {
-  background: linear-gradient(180deg, #ffffff 0%, #fdf2f2 100%);
-  background-attachment: fixed; 
-}
-
-
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 1024px) {
   .contact-section {
@@ -154,9 +167,9 @@ body {
     gap: 2rem;
     padding: 2rem 1.5rem;
   }
-  
-  .form-container {
-    max-width: 100%;
+
+  .form-row {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -168,16 +181,12 @@ body {
   }
   
   .container {
-    max-width: 95%;
+    max-width: 100%;
+    padding: 0 1rem;
   }
   
-  .form-group {
-    margin-bottom: 1.2rem;
-  }
-  
-  .submit-btn {
-    padding: 12px 30px;
-    font-size: 1rem;
+  .form-row {
+    gap: 0.75rem;
   }
   
   .info-card {
@@ -218,9 +227,7 @@ body {
     font-size: 16px;
   }
   
-  .submit-btn {
-    padding: 10px 25px;
-    font-size: 0.95rem;
+  button {
     width: 100%;
     max-width: 250px;
   }
@@ -261,9 +268,9 @@ body {
     font-size: 16px;
   }
   
-  .submit-btn {
-    padding: 8px 20px;
-    font-size: 0.9rem;
+  button {
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
   }
   
   .info-card {

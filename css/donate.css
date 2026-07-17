@@ -173,8 +173,8 @@ body {
 /* Desktop styles (min-width first, then override for smaller screens) */
 @media (min-width: 992px) {
   .donate-page-header {
-    margin-top: 60px;
-    padding: 3rem 1rem;
+    margin-top: 40px;
+    padding: 2rem 1rem;
   }
   .badge-pill {
     font-size: 2rem;
@@ -189,8 +189,8 @@ body {
 
   .give-parallax-hero {
     height: auto;
-    min-height: 100vh;
-    padding: 60px 0;
+    min-height: 84vh;
+    padding: 40px 0;
     background-attachment: scroll;
   }
 

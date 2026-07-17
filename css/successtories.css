@@ -159,49 +159,63 @@ nav a:hover {
 
 /* --- 5. Testimonials & Stories --- */
 .testimonials-section {
-    padding: 60px 20px;
-    background: #fff;
+    padding: 42px 20px 36px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fdf6 100%);
     text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #1f5f3d;
+    margin-bottom: 0.5rem;
+}
+
+.section-intro {
+    max-width: 720px;
+    margin: 0 auto 1.5rem;
+    color: #4b5563;
 }
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
-    border-top: #7ed321 solid 4px; /* Adds a green accent line at the top of the testimonials section */
-    padding-top: 40px;
+    border-top: #7ed321 solid 4px;
+    padding-top: 32px;
 }
 
 .testimonial-card {
-    background: #fdfdfd;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    background: #ffffff;
+    padding: 26px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(230, 126, 34, 0.12);
 }
 
 .testimonial-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.09);
 }
 
 .user-img img {
-    width: 300px; 
-    height: 300px; 
-    border-radius: 50%; 
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
     border: 3px solid #e67e22;
+    object-position: top;
 }
-
 
 .user-quote {
     font-style: italic;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: #444;
     margin-bottom: 20px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .user-info strong {
@@ -283,6 +297,66 @@ nav a:hover {
     padding-bottom: 15px;
 }
 
+/* --- Feedback and Review Section --- */
+.feedback-card {
+  margin: 40px auto 60px;
+  max-width: 900px;
+  padding: 30px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffffff, #f8fff4);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  border: 1px solid rgba(126, 211, 33, 0.25);
+}
+
+.feedback-heading h3 {
+  margin-bottom: 8px;
+  color: #1f5f3d;
+}
+
+.feedback-heading p {
+  margin-bottom: 20px;
+  color: #4b5563;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.review-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font: inherit;
+}
+
+.review-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.form-feedback {
+  font-size: 0.95rem;
+  color: #1f5f3d;
+  margin: 0;
+}
+
 /* --- 8. Responsive Design --- */
 @media (max-width: 1024px) {
   .case-study-img {
@@ -350,9 +424,13 @@ nav a:hover {
     margin-top: 1rem;
   }
   
-  .highlight-section, .share-story {
+  .highlight-section, .share-story, .feedback-card {
     padding: 40px 25px;
     margin: 30px 20px;
+  }
+
+  .review-row {
+    grid-template-columns: 1fr;
   }
   
   .highlight-section h3,
@@ -439,7 +517,7 @@ nav a:hover {
     margin-right: 10px;
   }
   
-  .highlight-section, .share-story {
+  .highlight-section, .share-story, .feedback-card {
     padding: 30px 15px;
     margin: 20px 15px;
   }
@@ -488,7 +566,7 @@ nav a:hover {
     font-size: 1.8rem;
   }
   
-  .highlight-section, .share-story {
+  .highlight-section, .share-story, .feedback-card {
     padding: 20px 12px;
     margin: 15px 10px;
   }

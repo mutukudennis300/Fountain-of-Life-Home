@@ -53,7 +53,7 @@
     <li><a href="Contact.html">Contact Us</a></li>
     
     <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">More</a>
+      <a href="javascript:void(0)" class="dropbtn" onclick="event.preventDefault(); event.stopPropagation(); const panel=this.closest('.dropdown').querySelector('.dropdown-content'); const shouldOpen=!panel.classList.contains('show'); document.querySelectorAll('.dropdown-content.show').forEach((content)=>{ if(content!==panel){ content.classList.remove('show'); } }); panel.classList.toggle('show', shouldOpen); this.setAttribute('aria-expanded', String(shouldOpen));">More</a>
       <div class="dropdown-content">
         <a href="Success Stories.html">Stories</a>
         <a href="gallery.html">Gallery</a>
@@ -68,18 +68,7 @@
 
 </header>
 
-<!-- WHATSAPP FLOAT -->
-    <a
-      href="https://wa.me/254714042012?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more."
-      class="whatsapp-float"
-      target="_blank"
-      aria-label="Chat with us on WhatsApp"
-    >
-      <i class="bi bi-whatsapp"></i>
-      <span>Chat with us</span>
-    </a>
-
-    <!-- PAGE HEADER WITH WELCOME & LOCATION -->
+<!-- PAGE HEADER WITH WELCOME & LOCATION -->
 <section class="page-header-banner">
   <div class="page-header-content">
     <h1>Welcome to Fountain of Life Children's Home</h1>
@@ -99,7 +88,7 @@
     <!-- Sliding Background Container -->
     <div class="hero-slider">
         <div class="slide" style="background-image: url('images/Muuo.jpg');"></div>
-        <div class="slide" style="background-image: url('images/visitors(11).jpg');"></div>
+        <div class="slide" style="background-image: url('images/visitors (11).jpg');"></div>
         <div class="slide" style="background-image: url('images/Junior High.jpg');"></div>
         <div class="slide" style="background-image: url('images/High School boys.jpg');"></div>
 
@@ -113,7 +102,7 @@
         <h2>Breaking the Cycle of Poverty</h2>
         <p>At Fountain of Life, we provide more than just a roof. We offer a nurturing family environment where orphaned and vulnerable children can heal, grow, and thrive.</p>
         <div class="hero-btns">
-            <a href="https://www.facebook.com/share/v/1BJXdQC89Y/" class="hero-btn" target="_blank">Watch Our Story</a>
+            <a href="https://www.facebook.com/share/v/1BJXdQC89Y/" class="hero-btn" target="_blank" rel="noopener noreferrer">Watch Our Story</a>
             <a href="donate.html" class="hero-btn">Donate Now</a>
         </div>
     </div>
@@ -360,8 +349,9 @@
         <h2>Have Questions?</h2>
         <p>Whether you're ready to start or just want to chat about our services, our team is here to help.</p>
         <div class="summary-actions">
-            <span>📞 +254 722 308 846</span>
-            <span>📧 fountainoflifeboys300@gmail.com</span>
+            <a href="tel:+254722308846">📞 +254 722 308 846</a>
+            <a href="mailto:fountainoflifeboys300@gmail.com">📧 fountainoflifeboys300@gmail.com</a>
+            <a href="https://wa.me/254714042012?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer">💬 WhatsApp Us</a>
         </div>
          <a href="Contact.html" class="btn-primary">Visit Contact Page</a>
     </div>
@@ -435,11 +425,10 @@
         <!-- Social Icons (Separated and Centered) -->
         <div class="footer-social-wrapper">
 <div class="footer-social">
-    <!-- Replace 'yourpage' or the username sections below with your actual account handles -->
-    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
-    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
-    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"><i class="bi bi-tiktok"></i></a>
-    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><i class="bi bi-youtube"></i></a>
+    <a href="https://www.facebook.com/share/v/1BJXdQC89Y/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
+    <a href="https://wa.me/254714042012?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i></a>
+    <a href="mailto:fountainoflifeboys300@gmail.com"><i class="bi bi-envelope"></i></a>
+    <a href="tel:+254722308846"><i class="bi bi-telephone"></i></a>
 </div>
 
         </div>
@@ -505,7 +494,38 @@ filterItems.forEach(item => {
         }
     });
 </script>
+<script>
+  document.addEventListener('click', function (event) {
+    const button = event.target.closest('.dropbtn');
 
+    if (button) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const dropdown = button.closest('.dropdown');
+      const panel = dropdown ? dropdown.querySelector('.dropdown-content') : null;
+
+      if (!panel) return;
+
+      const shouldOpen = !panel.classList.contains('show');
+      document.querySelectorAll('.dropdown-content.show').forEach((content) => {
+        if (content !== panel) {
+          content.classList.remove('show');
+        }
+      });
+
+      panel.classList.toggle('show', shouldOpen);
+      button.setAttribute('aria-expanded', String(shouldOpen));
+      return;
+    }
+
+    if (!event.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown-content.show').forEach((content) => {
+        content.classList.remove('show');
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
