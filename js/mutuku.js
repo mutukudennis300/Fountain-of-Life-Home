@@ -16,7 +16,7 @@ const __agentLog = (hypothesisId, message, data) => {
 // #endregion
 
 const siteWhatsAppLink = 'https://wa.me/254714042012?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more.';
-const siteEmail = 'fountainoflifeboys300@gmail.com';
+const siteEmail = 'fountainboys300@gmail.com';
 
 function copyText(text) {
   const value = String(text || '').trim();
