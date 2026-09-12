@@ -182,3 +182,38 @@
 /* Hover effects */
 .dropdown-content a:hover { background-color: #f1f1f1; }
 .dropdown:hover .dropdown-content { display: block; }
+
+/* --- GALLERY VISUAL REFINEMENT PATCH --- */
+
+.gallery-item img {
+  /* CHANGED: 'center' framing balances group photos and landscape pictures much better than 'top' */
+  object-position: center !important; 
+  
+  /* Adds a premium hardware-accelerated rendering filter */
+  filter: brightness(0.95) contrast(1.05) !important;
+}
+
+/* Enhances the hover effect to feel smooth, clean, and high-end */
+.gallery-item:hover img {
+  transform: scale(1.04) !important; 
+  filter: brightness(1.05) contrast(1.05) !important;
+  opacity: 0.9 !important;
+}
+
+/* Captions Adjustment: Make the gradient overlay smoother and easier to read */
+.gallery-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%) !important;
+  padding: 40px 20px 20px !important; /* Deeper bottom padding for text safety */
+}
+
+/* Style for items that don't have text descriptions yet so they don't look empty */
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Soft inner border */
+  pointer-events: none;
+}

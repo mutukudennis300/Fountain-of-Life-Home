@@ -265,4 +265,80 @@ document.addEventListener('click', (e) => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Create and inject the modal layout dynamically into the body
+  const lightbox = document.createElement("div");
+  lightbox.id = "custom-lightbox";
+  lightbox.style.cssText = `
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(8px);
+  `;
+
+  const lightboxImg = document.createElement("img");
+  lightboxImg.style.cssText = `
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+  `;
+
+  const closeBtn = document.createElement("span");
+  closeBtn.innerHTML = "&times;";
+  closeBtn.style.cssText = `
+    position: absolute;
+    top: 20px; right: 30px;
+    color: #fff; font-size: 40px; font-weight: bold;
+    cursor: pointer;
+  `;
+
+  lightbox.appendChild(closeBtn);
+  lightbox.appendChild(lightboxImg);
+  document.body.appendChild(lightbox);
+
+  // 2. Add click/tap handlers to all gallery images
+  const galleryItems = document.querySelectorAll(".gallery-item img");
+  galleryItems.forEach(img => {
+    // Add a pointer cursor to indicate clickability
+    img.style.cursor = "zoom-in";
+    
+    img.addEventListener("click", (e) => {
+      // Don't activate if clicking the logo container card
+      if (img.alt === "Logo") return;
+
+      lightboxImg.src = img.src;
+      lightbox.style.display = "flex";
+      
+      // Smooth fade-in animation trigger
+      setTimeout(() => {
+        lightbox.style.opacity = "1";
+        lightboxImg.style.transform = "scale(1)";
+      }, 10);
+    });
+  });
+
+  // 3. Close modal actions
+  const closeModal = () => {
+    lightbox.style.opacity = "0";
+    lightboxImg.style.transform = "scale(0.95)";
+    setTimeout(() => {
+      lightbox.style.display = "none";
+    }, 300);
+  };
+
+  lightbox.addEventListener("click", closeModal);
+  closeBtn.addEventListener("click", closeModal);
+});
+
+
 
