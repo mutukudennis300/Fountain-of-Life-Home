@@ -447,7 +447,7 @@ h2 {
 /* --- The Photo Container --- */
 .staff-image {
   width: 100%;
-  height: 300px; /* Fixed height for all staff photos */
+  height: 400px; /* Fixed height for all staff photos */
   overflow: hidden;
   background-color: #f0f4f8;
 }
