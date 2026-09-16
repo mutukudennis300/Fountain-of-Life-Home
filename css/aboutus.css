@@ -412,13 +412,6 @@ h2 {
   box-shadow: 0 15px 25px rgba(0,0,0,0.15);
 }
 
-
-
-
-  transition: transform 0.3s ease;
-  text-align: center;
-}
-
 .team-section {
   padding: 1rem 0 3rem;
 }
