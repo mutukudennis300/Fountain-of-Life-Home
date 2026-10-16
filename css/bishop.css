@@ -1,0 +1,361 @@
+/* --- BASE STYLES (Desktop) --- */
+.bishop-header {
+  height: 400px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.header-title { font-size: 3.5rem; color: #fff; text-transform: uppercase; margin: 10px 0; }
+.header-subtitle { color: #7ed321; letter-spacing: 4px; font-weight: bold; }
+.header-underline { width: 80px; height: 4px; background: #7ed321; margin: 0 auto; }
+
+.bishop-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.bishop-image img {
+  width: 100%;
+  border-bottom: 10px solid #7ed321;
+  box-shadow: 15px 15px 0px #f4f4f4;
+}
+
+/* --- MOBILE RESPONSIVE QUERIES --- */
+
+/* For Tablets (Under 992px) */
+@media (max-width: 992px) {
+  .header-title { font-size: 2.8rem; }
+  .bishop-container { gap: 30px; }
+}
+
+/* For Mobile Phones (Under 768px) */
+@media (max-width: 768px) {
+  .bishop-header {
+    height: 250px; /* Shorter header on mobile */
+  }
+
+  .header-title {
+    font-size: 2rem; /* Smaller text so it doesn't wrap awkwardly */
+    line-height: 1.2;
+  }
+
+  .bishop-container {
+    grid-template-columns: 1fr; /* Stack Image on top of Text */
+    margin-top: 20px;
+  }
+
+  .bishop-image {
+    max-width: 90% !important;
+    margin: 0 auto 30px auto; /* Center the image */
+  }
+
+  .bishop-image img {
+    box-shadow: 10px 10px 0px #f4f4f4; /* Smaller shadow on mobile */
+  }
+
+  .bishop-details {
+    text-align: center; /* Center text for easier mobile reading */
+  }
+
+  .section-heading {
+    font-size: 1.6rem;
+  }
+
+  .quote-box {
+    padding: 20px;
+    font-size: 1.1rem;
+    margin: 20px 0;
+  }
+}
+
+/* Quote Box Styling */
+.bishop-quote-container {
+  background-color: #f9fff6; /* Very light green tint */
+  border-left: 6px solid #7ed321; /* Your signature green */
+  padding: 40px 30px;
+  margin: 40px 0;
+  position: relative;
+  border-radius: 0 15px 15px 0;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.03);
+}
+
+.quote-icon {
+  color: rgba(126, 211, 33, 0.2); /* Faded green icon */
+  font-size: 3rem;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.bishop-quote {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-author {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #7ed321;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .bishop-quote-container {
+    padding: 30px 20px;
+    margin: 30px 10px;
+  }
+  
+  .bishop-quote {
+    font-size: 1.2rem; /* Smaller text for mobile screens */
+  }
+  
+  .quote-icon {
+    font-size: 2rem;
+  }
+}
+
+/* Social Section Styling */
+.bishop-social-wrapper {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.social-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.social-icons-row {
+  display: flex;
+  gap: 15px;
+}
+
+.social-circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #000; /* Black base like JCC */
+  color: #fff !important; /* Forces icon to be white */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.4rem; /* Adjusted for Bootstrap Icons visibility */
+  transition: all 0.3s ease;
+}
+
+/* Hover State - Using your Signature Green */
+.social-circle:hover {
+  background: #7ed321;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(126, 211, 33, 0.4);
+  color: #fff !important;
+}
+
+.milestone-card {
+    background: #fff;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+  .milestone-card:hover {
+    transform: translateY(-10px);
+  }
+  .milestone-icon i {
+    color: var(--brand-color, #007bff); /* Adjust based on your mutuku.css */
+  }
+
+
+/* CRITICAL: Force Bootstrap Icons to display properly */
+.bi {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Mobile Alignment */
+@media (max-width: 1024px) {
+  .bishop-header {
+    height: 300px;
+  }
+  
+  .header-title {
+    font-size: 2.5rem;
+  }
+  
+  .bishop-container {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bishop-header {
+    height: 250px;
+  }
+
+  .header-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .bishop-container {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+    padding: 0 15px;
+  }
+
+  .bishop-image {
+    max-width: 90% !important;
+    margin: 0 auto 30px auto;
+  }
+
+  .bishop-image img {
+    box-shadow: 10px 10px 0px #f4f4f4;
+  }
+
+  .bishop-details {
+    text-align: center;
+  }
+
+  .section-heading {
+    font-size: 1.6rem;
+  }
+
+  .quote-box {
+    padding: 20px;
+    font-size: 1.1rem;
+    margin: 20px 0;
+  }
+  
+  .bishop-quote-container {
+    padding: 25px 15px;
+    margin: 25px 10px;
+  }
+  
+  .bishop-quote {
+    font-size: 1.2rem;
+  }
+  
+  .quote-icon {
+    font-size: 2rem;
+  }
+  
+  .bishop-social-wrapper {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .social-icons-row {
+    justify-content: center;
+  }
+  
+  .social-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .bishop-header {
+    height: 200px;
+    padding: 15px;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+  }
+  
+  .header-subtitle {
+    font-size: 0.85rem;
+  }
+  
+/* Removes space from the image wrapper */
+.bishop-image { 
+    max-width: 95% !important; 
+    margin-bottom: 0 !important; 
+}
+
+.bishop-image img {
+    display: block; 
+    width: 100%;
+}
+
+/* Removes top margin so it touches the image */
+.quote-box {
+    margin-top: 0 !important;
+    padding: 15px 12px;
+    background-color: #f9f9f9; /* Optional: adds a light background to the box */
+    border-left: 4px solid #7ed321;
+}
+
+.quote-box h5 {
+    margin: 0;
+    font-style: italic;
+}
+
+  
+  .social-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bishop-header {
+    height: 180px;
+  }
+
+  .header-title {
+    font-size: 1.2rem;
+  }
+  
+  .header-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+  
+  .bishop-container {
+    padding: 0 8px;
+  }
+  
+  .section-heading {
+    font-size: 1.1rem;
+  }
+  
+  .bishop-quote {
+    font-size: 1rem;
+    margin-left: 0%;
+  }
+  
+  .social-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+}
+
+
