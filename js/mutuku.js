@@ -1,20 +1,3 @@
-// #region agent log
-const __agentLog = (hypothesisId, message, data) => {
-  fetch('http://127.0.0.1:7797/ingest/0bf56bc0-2e30-47ee-90e9-6d3b3e4e58c9', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '1fec7d' },
-    body: JSON.stringify({
-      sessionId: '1fec7d',
-      hypothesisId,
-      location: 'mutuku.js',
-      message,
-      data,
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {});
-};
-// #endregion
-
 const siteWhatsAppLink = 'https://wa.me/254716863607?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more.';
 const siteEmail = 'fountainboys300@gmail.com';
 
@@ -192,14 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.faq-section');
     const searchInput = document.getElementById('faqSearch');
 
-    // #region agent log
-    __agentLog('D', 'faq-init', {
-      page: document.location.pathname,
-      sectionCount: sections.length,
-      hasSearchInput: !!searchInput,
-    });
-    // #endregion
-
     if (sections.length === 0 && filterButtons.length === 0 && questions.length === 0) {
       return;
     }
@@ -339,6 +314,5 @@ document.addEventListener("DOMContentLoaded", () => {
   lightbox.addEventListener("click", closeModal);
   closeBtn.addEventListener("click", closeModal);
 });
-
 
 
