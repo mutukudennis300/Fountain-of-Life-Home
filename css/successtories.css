@@ -275,8 +275,41 @@ nav a:hover {
 
 .case-study-image {
     flex: 1;
+    position: relative;
     font-weight: bold;
     color: #333;
+    text-align: center;
+}
+
+.then-photo {
+    position: absolute;
+    z-index: 1;
+    right: -8px;
+    bottom: 42px;
+    width: 132px;
+    margin: 0;
+    padding: 6px 6px 0;
+    background: #fff;
+    border: 1px solid #eee8df;
+    border-radius: 5px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+    transform: rotate(2deg);
+}
+
+.then-photo img {
+    width: 100%;
+    height: 112px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 3px;
+}
+
+.then-photo figcaption {
+    padding: 5px 2px 6px;
+    color: #555;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.2;
     text-align: center;
 }
 
@@ -404,6 +437,15 @@ nav a:hover {
   margin: 0;
 }
 
+.form-feedback.is-error {
+  color: #a12b24;
+}
+
+.review-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
 /* --- 8. Responsive Design --- */
 @media (max-width: 1024px) {
   .case-study-img {
@@ -450,6 +492,16 @@ nav a:hover {
     max-width: 100%;
     height: auto;
     max-height: 400px;
+  }
+
+  .then-photo {
+    right: 2px;
+    bottom: 38px;
+    width: 112px;
+  }
+
+  .then-photo img {
+    height: 94px;
   }
 
   .case-study-text {

@@ -176,6 +176,10 @@
       </div>
       <div class="case-study-image">
         <img src="images/mutuku story.webp" alt="Dennis Mutuku, Fountain of Life alumnus" class="case-study-img" style="object-position: top;">
+        <figure class="then-photo">
+          <img src="images/young Mutuku.webp" alt="Dennis Mutuku when he was younger" loading="lazy">
+          <figcaption>Then · Class 2</figcaption>
+        </figure>
         <p class="image-caption">Dennis Mutuku</p>
       </div>
       <div class="story-closing">
@@ -194,6 +198,10 @@
     <div class="case-study-content">
       <div class="case-study-image">
         <img src="images/paul m.webp" alt="Paul Mwongela" class="case-study-img">
+        <figure class="then-photo">
+          <img src="images/Paul Mwongela.webp" alt="Paul Mwongela when he was younger" loading="lazy">
+          <figcaption>Then</figcaption>
+        </figure>
         <p class="image-caption">Paul Mwongela</p>
       </div>
       <div class="case-study-text">
@@ -224,6 +232,10 @@
       </div>
       <div class="case-study-image">
         <img src="images/David Ouma.webp" alt="David Ouma, Human Resources professional and mentor" class="case-study-img" style="object-position: top;">
+        <figure class="then-photo">
+          <img src="images/Muuo.webp" alt="David Ouma in an earlier photograph" loading="lazy">
+          <figcaption>Then</figcaption>
+        </figure>
         <p class="image-caption">Diploma Graduate in Human Resource Management</p>
       </div>
     </div>
@@ -239,6 +251,10 @@
   <div class="case-study-content">
     <div class="case-study-image">
       <img src="images/BOYSJERE1.webp" alt="Jeremiah" class="case-study-img">
+      <figure class="then-photo">
+        <img src="images/Jeremiah Kioko.webp" alt="Jeremiah Kioko in an earlier photograph" loading="lazy">
+        <figcaption>Then</figcaption>
+      </figure>
       <p class="image-caption">Jeremiah Kioko</p>
     </div>
     <div class="case-study-text">
@@ -279,6 +295,10 @@
       </div>
       <div class="case-study-image">
         <img src="images/Joseph Owacho.webp" alt="Joseph Owacho wearing a red shirt" class="case-study-img" style="object-position: top;">
+        <figure class="then-photo">
+          <img src="images/IMG-20260219-WA0032.webp" alt="Joseph Owacho in an earlier photograph" loading="lazy">
+          <figcaption>Then</figcaption>
+        </figure>
         <p class="image-caption">Joseph Owacho</p>
       </div>
       <div class="story-closing">
@@ -328,7 +348,15 @@
           <h3>Leave a Review or Encouraging Message</h3>
           <p>Your words help us keep showing up for the boys and families we serve.</p>
         </div>
-        <form id="review-form" class="review-form">
+        <form
+          id="review-form"
+          class="review-form"
+          action="https://formsubmit.co/fountainboys300@gmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="New website review">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://mutukudennis300.github.io/Fountain-of-Life-Home/Success%20Stories.html?status=review-success#review-form">
           <div class="review-row">
             <input type="text" name="name" placeholder="Your name" required>
             <input type="email" name="email" placeholder="Your email" required>
@@ -336,7 +364,12 @@
           <textarea name="review" rows="5" placeholder="Write your encouragement, feedback, or prayer for the home..." required></textarea>
           <div class="review-actions">
             <button type="submit" class="cta-button">Send Message</button>
-            <p class="form-feedback" aria-live="polite"></p>
+            <p
+              class="form-feedback"
+              data-form-status="review-success"
+              role="status"
+              aria-live="polite"
+            ></p>
           </div>
         </form>
       </section>

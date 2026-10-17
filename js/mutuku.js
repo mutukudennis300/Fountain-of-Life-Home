@@ -1,5 +1,4 @@
 const siteWhatsAppLink = 'https://wa.me/254716863607?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more.';
-const siteEmail = 'fountainboys300@gmail.com';
 
 function copyText(text) {
   const value = String(text || '').trim();
@@ -16,10 +15,6 @@ function openDonationLink(amount = '') {
   const safeAmount = String(amount || '').trim();
   const message = safeAmount ? `Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20donate%20Ksh%20${encodeURIComponent(safeAmount)}.` : 'Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20support%20your%20work.';
   window.open(`${siteWhatsAppLink.replace('Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more.', message)}`, '_blank', 'noopener,noreferrer');
-}
-
-function buildMailtoLink(subject, body) {
-  return `mailto:${siteEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 /* --- DROPDOWN TOGGLE (Mobile & Desktop) --- */
@@ -60,6 +55,17 @@ document.addEventListener('click', (e) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const status = new URLSearchParams(window.location.search).get('status');
+  const formStatus = document.querySelector('[data-form-status]');
+  const statusMessages = {
+    success: 'Thank you. Your message was submitted successfully.',
+    'review-success': 'Thank you. Your feedback was submitted successfully.',
+  };
+  if (formStatus && status === formStatus.dataset.formStatus && statusMessages[status]) {
+    formStatus.hidden = false;
+    formStatus.textContent = statusMessages[status];
+  }
+
   const donateButton = document.querySelector('[data-donate-button]');
   const amountInput = document.getElementById('customAmount');
 
@@ -76,22 +82,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const reviewForm = document.getElementById('review-form');
   if (reviewForm) {
-    reviewForm.addEventListener('submit', (event) => {
+    reviewForm.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const name = reviewForm.querySelector('input[name="name"]').value.trim();
-      const review = reviewForm.querySelector('textarea[name="review"]').value.trim();
-      const summary = `Name: ${name || 'Anonymous'}\n\nReview:\n${review || 'No review provided.'}`;
-      const mailtoLink = buildMailtoLink('New website review', summary);
-      window.location.href = mailtoLink;
-      reviewForm.reset();
+      const submitButton = reviewForm.querySelector('button[type="submit"]');
       const message = reviewForm.querySelector('.form-feedback');
-      if (message) {
-        message.textContent = 'Thank you for your feedback. Your message is ready to be sent.';
+      if (!submitButton || !message) return;
+
+      submitButton.disabled = true;
+      message.classList.remove('is-error');
+      message.textContent = 'Sending your feedback...';
+
+      try {
+        const endpoint = new URL(reviewForm.action);
+        endpoint.pathname = `/ajax${endpoint.pathname}`;
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(Object.fromEntries(new FormData(reviewForm))),
+        });
+        let result;
+        try {
+          result = await response.json();
+        } catch {
+          throw new Error('The form service returned an unreadable response. Please try again later.');
+        }
+
+        if (
+          !response.ok ||
+          !result ||
+          (result.success !== true && result.success !== 'true')
+        ) {
+          throw new Error(result.message || 'The form service could not accept your feedback.');
+        }
+
+        reviewForm.reset();
+        message.textContent = 'Thank you. Your feedback was submitted successfully.';
+      } catch (error) {
+        message.classList.add('is-error');
+        message.textContent = error instanceof Error
+          ? `Your feedback could not be submitted. ${error.message}`
+          : 'Your feedback could not be submitted. Please try again.';
+      } finally {
+        submitButton.disabled = false;
       }
     });
   }
 
-  const contactForm = document.querySelector('form[action*="formsubmit.co"]');
+  const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', () => {
       const url = new URL(contactForm.action);
@@ -102,8 +142,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const volunteerForm = document.querySelector('form[action*="formspree.io"]');
   if (volunteerForm) {
-    volunteerForm.addEventListener('submit', () => {
-      volunteerForm.setAttribute('target', '_self');
+    volunteerForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submitButton = volunteerForm.querySelector('button[type="submit"]');
+      const message = volunteerForm.querySelector('.form-feedback');
+      if (!submitButton || !message) return;
+
+      submitButton.disabled = true;
+      message.classList.remove('is-error');
+      message.textContent = 'Sending your application...';
+
+      try {
+        const response = await fetch(volunteerForm.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(volunteerForm),
+        });
+
+        if (!response.ok) {
+          throw new Error(`The form service returned status ${response.status}. Please try again.`);
+        }
+
+        volunteerForm.reset();
+        message.textContent = 'Thank you. Your volunteer application was submitted successfully.';
+      } catch (error) {
+        message.classList.add('is-error');
+        message.textContent = error instanceof Error
+          ? `Your application could not be submitted. ${error.message}`
+          : 'Your application could not be submitted. Please try again.';
+      } finally {
+        submitButton.disabled = false;
+      }
     });
   }
 });
@@ -314,5 +383,3 @@ document.addEventListener("DOMContentLoaded", () => {
   lightbox.addEventListener("click", closeModal);
   closeBtn.addEventListener("click", closeModal);
 });
-
-
