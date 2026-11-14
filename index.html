@@ -54,6 +54,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
           class="menu-btn"
+          type="button"
         >
           ☰
         </button>
@@ -393,7 +394,15 @@
             <div class="payment-row">
               <div class="payment-label">Paybill number</div>
               <div class="payment-value">
-                650384 <button class="copy-btn" data-copy="650384">Copy</button>
+                650384
+                <button
+                  aria-label="Copy paybill number"
+                  class="copy-btn"
+                  data-copy="650384"
+                  type="button"
+                >
+                  Copy
+                </button>
               </div>
             </div>
             <div class="payment-row">
@@ -404,7 +413,14 @@
               <div class="payment-label">Send Money contact</div>
               <div class="payment-value">
                 0722 308 846
-                <button class="copy-btn" data-copy="0722308846">Copy</button>
+                <button
+                  aria-label="Copy WhatsApp contact number"
+                  class="copy-btn"
+                  data-copy="0722308846"
+                  type="button"
+                >
+                  Copy
+                </button>
               </div>
             </div>
             <div class="payment-row">
@@ -585,32 +601,41 @@
     <script>
       const menuButton = document.querySelector(".menu-btn");
       const links = document.querySelector(".nav-links");
-      menuButton.addEventListener("click", () => {
-        const open = links.classList.toggle("open");
-        menuButton.setAttribute("aria-expanded", String(open));
-        menuButton.textContent = open ? "×" : "☰";
-      });
-      links.querySelectorAll("a").forEach((a) =>
-        a.addEventListener("click", () => {
-          links.classList.remove("open");
-          menuButton.setAttribute("aria-expanded", "false");
-          menuButton.textContent = "☰";
-        }),
-      );
+      const toast = document.getElementById("toast");
       let toastTimer;
-      document.querySelectorAll("[data-copy]").forEach((button) =>
+
+      if (menuButton && links) {
+        menuButton.addEventListener("click", () => {
+          const isOpen = links.classList.toggle("open");
+          menuButton.setAttribute("aria-expanded", String(isOpen));
+          menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        links.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            links.classList.remove("open");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.textContent = "☰";
+          });
+        });
+      }
+
+      document.querySelectorAll("[data-copy]").forEach((button) => {
         button.addEventListener("click", async () => {
           const text = button.dataset.copy;
+
           try {
             await navigator.clipboard.writeText(text);
-            showToast("Copied " + text + " to clipboard.");
-          } catch (e) {
-            showToast("Please copy manually: " + text);
+            showToast(`Copied ${text} to clipboard.`);
+          } catch (error) {
+            showToast(`Please copy manually: ${text}`);
           }
-        }),
-      );
+        });
+      });
+
       function showToast(message) {
-        const toast = document.getElementById("toast");
+        if (!toast) return;
+
         toast.textContent = message;
         toast.style.display = "block";
         clearTimeout(toastTimer);
