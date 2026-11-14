@@ -81,9 +81,9 @@
       <div class="contact-section">
         <div class="contact-form">
           <h2>Send us a Message</h2>
-          <p class="form-intro">We would love to hear from you, whether you want to volunteer, donate, or simply learn more about our work.</p>
+          <p class="form-intro">We would love to hear from you, whether you want to volunteer, donate, or simply learn more about our work. Contact form messages are sent to the home for follow-up; please do not include sensitive personal information.</p>
           <p class="form-status" data-form-status="success" role="status" aria-live="polite" hidden></p>
-          <form id="contact-form" action="https://formsubmit.co/fountainboys300@gmail.com" method="POST">
+          <form id="contactForm" action="https://formsubmit.co/fountainboys300@gmail.com" method="POST">
             <input type="hidden" name="_next" value="https://mutukudennis300.github.io/Fountain-of-Life-Home/Contact.html?status=success">
             <input type="hidden" name="_subject" value="New Website Inquiry">
             <input type="hidden" name="_template" value="table">
@@ -94,8 +94,13 @@
               <input type="email" name="email" required placeholder="Email Address">
             </div>
             <div class="form-row">
-              <input type="text" name="phone" placeholder="Phone Number">
-              <input type="text" name="subject" required placeholder="Subject">
+              <input type="tel" name="phone" placeholder="Phone Number (Optional)">
+              <select name="inquiry_type">
+                <option value="Visit">Arrange a Visit</option>
+                <option value="Sponsorship">Sponsor a Boy</option>
+                <option value="Donation">Donate Items / Funds</option>
+                <option value="General">General Question</option>
+              </select>
             </div>
             <textarea name="message" required placeholder="Your Message"></textarea>
             <button type="submit">Send Message</button>

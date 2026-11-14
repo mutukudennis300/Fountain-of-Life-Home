@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
+  "name": "fountain-life-mpesa",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-11-14",
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "api.fountainoflifechilderenshome.org",
+      "custom_domain": true
+    }
+  ],
+  "vars": {
+    "SITE_ORIGIN": "https://fountainoflifechilderenshome.org"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "fountain-life-mpesa",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ]
+}

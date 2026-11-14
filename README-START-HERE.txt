@@ -31,6 +31,8 @@ BEFORE PUBLISHING
 - The contact form uses FormSubmit and may require the recipient email to be activated/verified with the provider. Test it from the hosted website.
 - The volunteer form uses the existing Formspree endpoint. Test it and confirm the connected form account is accessible to the organisation.
 - The Success Stories feedback form opens the visitor's email application; it does not send messages automatically from the static website.
+- The donation page currently shows manual M-Pesa Paybill and Send Money instructions. The optional sandbox STK Push backend is in mpesa-worker/ and must be configured and deployed separately before the online M-Pesa button can work.
+- Follow mpesa-worker/README.md to configure Cloudflare and Daraja. Keep every Daraja key and passkey in Cloudflare Worker secrets; never add them to this static website or Git.
 - Review photos, names and personal stories regularly under the home's consent and child-safeguarding process.
 - Google Fonts and Bootstrap Icons are loaded from external CDNs and need an internet connection. Bootstrap itself is included locally.
 

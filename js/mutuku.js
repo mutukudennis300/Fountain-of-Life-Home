@@ -1,4 +1,5 @@
 const siteWhatsAppLink = 'https://wa.me/254716863607?text=Hello%20Fountain%20of%20Life,%20I%20would%20like%20to%20know%20more.';
+const API_BASE = 'https://fountain-backend.mutukudennis300.workers.dev';
 
 function copyText(text) {
   const value = String(text || '').trim();
@@ -54,6 +55,31 @@ document.addEventListener('click', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  const statFields = {
+    'stat-boys': 'boys_accommodated',
+    'stat-highschool': 'high_school_boys',
+    'stat-served': 'children_served',
+    'stat-graduates': 'college_graduates',
+  };
+  if (Object.keys(statFields).some(id => document.getElementById(id))) {
+    fetch(`${API_BASE}/api/stats`)
+      .then(response => {
+        if (!response.ok) throw new Error(`Stats request failed (${response.status}).`);
+        return response.json();
+      })
+      .then(data => {
+        for (const [id, field] of Object.entries(statFields)) {
+          const element = document.getElementById(id);
+          const value = data[field];
+          if (element && (typeof value === 'string' || typeof value === 'number')) {
+            element.textContent = String(value);
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Could not load live impact stats.', error);
+      });
+  }
 
   const status = new URLSearchParams(window.location.search).get('status');
   const formStatus = document.querySelector('[data-form-status]');
@@ -68,14 +94,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const donateButton = document.querySelector('[data-donate-button]');
   const amountInput = document.getElementById('customAmount');
+  const phoneInput = document.getElementById('mpesaPhone');
+  const donationStatus = document.querySelector('[data-stk-status]');
 
-  if (donateButton && amountInput) {
-    donateButton.addEventListener('click', () => {
-      const amount = amountInput.value.trim();
-      if (amount) {
-        openDonationLink(amount);
-      } else {
-        window.open(siteWhatsAppLink, '_blank', 'noopener,noreferrer');
+  if (donateButton && amountInput && phoneInput && donationStatus) {
+    donateButton.addEventListener('click', async () => {
+      const apiBase = donateButton.dataset.stkApi?.trim().replace(/\/+$/, '');
+      if (!apiBase) {
+        donationStatus.textContent = 'Online M-Pesa is not yet set up. Please use the Paybill below.';
+        return;
+      }
+
+      const amount = Number(amountInput.value);
+      if (!Number.isInteger(amount) || amount < 1 || amount > 250000) {
+        donationStatus.textContent = 'Enter a whole amount from KSh 1 to KSh 250,000.';
+        amountInput.focus();
+        return;
+      }
+
+      const phoneNumber = phoneInput.value.trim();
+      if (!phoneNumber) {
+        donationStatus.textContent = 'Enter the M-Pesa phone number that should receive the payment prompt.';
+        phoneInput.focus();
+        return;
+      }
+
+      donateButton.disabled = true;
+      donationStatus.textContent = 'Sending a secure request to M-Pesa...';
+
+      try {
+        const response = await fetch(`${apiBase}/api/mpesa/stkpush`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount, phoneNumber }),
+        });
+        const result = await response.json().catch(() => null);
+        if (!response.ok || !result) {
+          throw new Error(result?.error || 'The payment service could not accept the request.');
+        }
+
+        donationStatus.textContent = result.message;
+        const statusToken = result.statusToken;
+        if (result.status === 'pending' && typeof statusToken === 'string') {
+          for (let attempt = 0; attempt < 30; attempt += 1) {
+            await new Promise(resolve => window.setTimeout(resolve, 4000));
+            const statusResponse = await fetch(`${apiBase}/api/mpesa/status`, {
+              headers: { Authorization: `Bearer ${statusToken}` },
+            });
+            const statusResult = await statusResponse.json().catch(() => null);
+            if (!statusResponse.ok || !statusResult) {
+              throw new Error(statusResult?.error || 'Could not check the payment status.');
+            }
+
+            donationStatus.textContent = statusResult.message;
+            if (statusResult.status === 'succeeded' || statusResult.status === 'failed') {
+              break;
+            }
+          }
+        }
+      } catch (error) {
+        donationStatus.textContent = error instanceof Error
+          ? error.message
+          : 'The payment request could not be completed. Please use the Paybill below.';
+      } finally {
+        donateButton.disabled = false;
       }
     });
   }
@@ -131,12 +213,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const contactForm = document.getElementById('contact-form');
+  const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', () => {
-      const url = new URL(contactForm.action);
-      url.searchParams.set('subject', 'New Website Inquiry');
-      contactForm.action = url.toString();
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const message = document.querySelector('[data-form-status="success"]');
+      if (!submitButton || !message) return;
+
+      submitButton.disabled = true;
+      message.hidden = false;
+      message.textContent = 'Sending your message...';
+
+      const formData = new FormData(contactForm);
+      const payload = {
+        name: String(formData.get('name') ?? ''),
+        email: String(formData.get('email') ?? ''),
+        phone: String(formData.get('phone') ?? ''),
+        inquiry_type: String(formData.get('inquiry_type') ?? 'General'),
+        message: String(formData.get('message') ?? ''),
+      };
+
+      try {
+        const response = await fetch(`${API_BASE}/api/inquiries`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json().catch(() => null);
+        if (!response.ok || !result?.success) {
+          throw new Error(result?.error || 'The inquiry service could not accept your message.');
+        }
+
+        contactForm.reset();
+        message.textContent = 'Asante! Your message has been received by Fountain of Life.';
+      } catch (error) {
+        message.textContent = error instanceof Error
+          ? `${error.message} Please call or WhatsApp +254 722 308 846.`
+          : 'Your message could not be sent. Please call or WhatsApp +254 722 308 846.';
+      } finally {
+        submitButton.disabled = false;
+      }
     });
   }
 
