@@ -159,6 +159,10 @@ h2 {
     grid-template-columns: 1fr;
   }
 
+  .Broad-goal {
+    grid-column: span 1;
+  }
+
   .staff-grid {
     grid-template-columns: repeat(2, 1fr);
   }
