@@ -1,3 +1,4 @@
 node_modules/
 mpesa-worker/.dev.vars*
 mpesa-worker/.env*
+mpesa-worker/.wrangler/

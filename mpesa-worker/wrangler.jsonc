@@ -4,20 +4,15 @@
   "main": "src/worker.js",
   "compatibility_date": "2026-11-14",
   "workers_dev": true,
-  "routes": [
-    {
-      "pattern": "api.fountainoflifechilderenshome.org",
-      "custom_domain": true
-    }
-  ],
   "vars": {
-    "SITE_ORIGIN": "https://fountainoflifechilderenshome.org"
+    "SITE_ORIGIN": "https://fountainoflifechilderenshome.org",
+    "DARAJA_CALLBACK_URL": "https://fountain-life-mpesa.mutukudennis300.workers.dev/api/mpesa/callback"
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "fountain-life-mpesa",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+      "database_id": "f7aa172a-9cef-4133-8b33-ac1b7290fd93"
     }
   ]
 }

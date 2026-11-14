@@ -28,38 +28,28 @@ configured or a request cannot be started.
    phone number to your Daraja app as required by its current test process.
 4. Do not use production credentials or real payments during this setup.
 
-## 2. Create the Cloudflare database
+## 2. Cloudflare database
 
-From the repository root, enter the Worker folder and install its Wrangler
-development dependency, then create the D1 database:
+The D1 database `fountain-life-mpesa` has been created and its schema applied.
+Its ID is already in `wrangler.jsonc`; do not create a second database. From
+the repository root, enter the Worker folder:
 
 ```powershell
 cd mpesa-worker
 npm install
-npx wrangler d1 create fountain-life-mpesa
 ```
 
-Copy the returned database ID into `database_id` in `wrangler.jsonc`, replacing
-`REPLACE_WITH_D1_DATABASE_ID`. Do not put credentials in this file. Create the
-tables:
+To reapply the schema later, use:
 
 ```powershell
 npx wrangler d1 execute fountain-life-mpesa --remote --file=schema.sql
 ```
 
-## 3. Check the API custom domain
+## 3. Keep the website domain separate
 
-The Worker is configured for
-`https://api.fountainoflifechilderenshome.org`. Your root hostname serves the
-GitHub Pages website and must not be assigned to this Worker: a Worker custom
-domain takes over every path on its hostname.
-
-The custom API domain requires the domain to be an active zone in your
-Cloudflare account, and there must not already be a CNAME on the `api`
-hostname. Wrangler can create the DNS record and certificate on deployment
-when those requirements are met. If your domain's DNS is not managed by
-Cloudflare, first decide whether to move DNS management or keep the `workers.dev`
-URL as the API endpoint. Do not change the root website DNS record.
+This Worker uses its `workers.dev` hostname, so it does not change DNS or
+interfere with the GitHub Pages website or the existing `fountain-backend`
+Worker. Do not point the root website domain to this payment Worker.
 
 ## 4. Add Daraja secrets
 
@@ -71,27 +61,25 @@ npx wrangler secret put DARAJA_CONSUMER_KEY
 npx wrangler secret put DARAJA_CONSUMER_SECRET
 npx wrangler secret put DARAJA_SHORTCODE
 npx wrangler secret put DARAJA_PASSKEY
-npx wrangler secret put DARAJA_CALLBACK_URL
 ```
 
-Deploy to create the Worker and, if the custom-domain requirements are met,
-attach its API hostname:
+The Worker is already deployed at
+`https://fountain-life-mpesa.mutukudennis300.workers.dev`. After adding the
+secrets, deploy again to update it:
 
 ```powershell
 npx wrangler deploy
 ```
 
-Set `DARAJA_CALLBACK_URL` to
-`https://api.fountainoflifechilderenshome.org/api/mpesa/callback`.
-It must be public HTTPS. After setting it, deploy again.
+The callback URL is already configured as a non-secret Worker variable.
 
 ## 5. Connect the donation page
 
 Set the `data-stk-api` attribute on the STK Push button in `donate.html` to the
-Worker base URL, without a trailing slash. For example:
+Worker base URL printed by Wrangler, without a trailing slash. For example:
 
 ```html
-data-stk-api="https://api.fountainoflifechilderenshome.org"
+data-stk-api="https://fountain-life-mpesa.<your-account-subdomain>.workers.dev"
 ```
 
 Publish the updated site to GitHub Pages. The URL is public configuration, not
@@ -100,7 +88,7 @@ a secret. The Worker allows browser requests only from the site origin set in
 
 ## 6. Test before production
 
-1. Open `https://api.fountainoflifechilderenshome.org/health`; it should return `{"status":"ok","environment":"sandbox"}`.
+1. Open `https://<your-worker-url>/health`; it should return `{"status":"ok","environment":"sandbox"}`.
 2. Use Daraja's sandbox test phone number on the donation page.
 3. Confirm the test phone receives the STK prompt and complete or cancel it.
 4. Confirm the page reports success only after Daraja's status query confirms
