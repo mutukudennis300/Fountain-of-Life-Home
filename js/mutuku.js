@@ -105,6 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      const isLocalPreview = window.location.hostname === '127.0.0.1'
+        || window.location.hostname === 'localhost';
+      if (isLocalPreview) {
+        donationStatus.textContent = 'Online M-Pesa requests work on the live website only. Please use the Paybill for this local preview.';
+        return;
+      }
+
       const amount = Number(amountInput.value);
       if (!Number.isInteger(amount) || amount < 1 || amount > 250000) {
         donationStatus.textContent = 'Enter a whole amount from KSh 1 to KSh 250,000.';
@@ -153,9 +160,13 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       } catch (error) {
-        donationStatus.textContent = error instanceof Error
-          ? error.message
-          : 'The payment request could not be completed. Please use the Paybill below.';
+        if (error instanceof TypeError) {
+          donationStatus.textContent = 'Could not connect to the payment service. Please use the Paybill below or try again later.';
+        } else {
+          donationStatus.textContent = error instanceof Error
+            ? error.message
+            : 'The payment request could not be completed. Please use the Paybill below.';
+        }
       } finally {
         donateButton.disabled = false;
       }
